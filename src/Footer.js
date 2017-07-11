@@ -17,7 +17,9 @@ const Footer = createReactClass({
     },
     render() {
         return (
-            <div className={`Footer ${this.state.mouseHover ? 'mouse-over-footer' : ''}`}>
+            <div className={`Footer ${this.state.mouseHover ? 'mouse-over-footer' : ''}`}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}>
                 <div className="footer-content"><span>My cool footer content</span></div>
                 {this.state.mouseHover ? <ContactUs/> : null}
             </div>
