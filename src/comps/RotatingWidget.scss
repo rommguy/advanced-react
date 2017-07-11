@@ -1,0 +1,47 @@
+@import "shared.scss";
+
+$wingHeight: 70px;
+$wingWidth: 15px;
+$widgetCenter: calc(#{$widget-size} / 2);
+
+.rotating-widget {
+    width: 100%;
+    border: 1px solid black;
+
+    .controls {
+        display: inline-block;
+    }
+
+    .visual {
+        display: inline-block;
+        height: $widget-size;
+        width: $widget-size;
+        position: relative;
+
+        .wing {
+            position: absolute;
+            height: $wingHeight;
+            width: $wingWidth;
+        }
+
+        .first {
+            background-color: red;
+            top: calc(#{$widgetCenter} - #{$wingHeight});
+            left: calc(#{$widgetCenter} - (#{$wingWidth} / 2));
+        }
+
+        .second {
+            background-color: blue;
+            transform: rotate(45deg);
+            top: calc(#{$widgetCenter});
+            left: calc(#{$widgetCenter} - 37px);
+        }
+
+        .third {
+            background-color: limegreen;
+            transform: rotate(-45deg);
+            top: calc(#{$widgetCenter});
+            left: calc(#{$widgetCenter} + 22px);
+        }
+    }
+}

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Footer from './comps/Footer';
+import RotatingWidget from './comps/RotatingWidget';
 
 class App extends Component {
     constructor() {
@@ -17,7 +18,9 @@ class App extends Component {
                     <h2>Welcome to React</h2>
                 </div>
                 <div>
-                    <div className="widgets-area"></div>
+                    <div className="widgets-area">
+                        <RotatingWidget/>
+                    </div>
                     <div className="report-area"></div>
                 </div>
                 <Footer/>
