@@ -14,10 +14,12 @@ const WidgetsArea = createReactClass({
         return _.some(_.keys(nextProps), key => nextProps[key] !== this.props[key])
     },
     render() {
-        return (<div className="widgets-area">
-            <RotatingWidget reportAction={this.props.reportAction}/>
-            <ExpandingWidget reportAction={this.props.reportAction}/>
-        </div>)
+        return (
+            <div className="widgets-area">
+                <RotatingWidget reportAction={this.props.reportAction}/>
+                <div className="separator"></div>
+                <ExpandingWidget reportAction={this.props.reportAction}/>
+            </div>)
     }
 })
 

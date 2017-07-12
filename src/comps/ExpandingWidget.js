@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import createReactClass from 'create-react-class';
+import React from 'react'
+import PropTypes from 'prop-types'
+import createReactClass from 'create-react-class'
+import utils from '../utils/utils'
 
-const minWidth = 10;
+const {getCurrentTime} = utils
+const minWidth = 10
 const maxWidth = 200
-const defaultWidth = (maxWidth - minWidth) / 2;
+const defaultWidth = (maxWidth - minWidth) / 2
 
 const ExpandingWidget = createReactClass({
     displayName: 'ExpandingWidget',
@@ -17,14 +19,14 @@ const ExpandingWidget = createReactClass({
         }
     },
     getCurrentValue() {
-        return this.state.width;
+        return this.state.width
     },
     handleMouseEnter() {
-        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseEnter', time: Date.now(), value: this.getCurrentValue()})
+        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseEnter', time: getCurrentTime(), value: this.getCurrentValue()})
         this.setState({mouseHover: true})
     },
     handleMouseLeave() {
-        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseLeave', time: Date.now(), value: this.getCurrentValue()})
+        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseLeave', time: getCurrentTime(), value: this.getCurrentValue()})
         this.setState({mouseHover: false})
     },
     isHovering() {
@@ -33,17 +35,17 @@ const ExpandingWidget = createReactClass({
     updateWidth(width, source) {
         this.setState({width})
         if (source) {
-            this.props.reportAction({widget: this.constructor.displayName, source, time: Date.now(), value: width})
+            this.props.reportAction({widget: this.constructor.displayName, source, time: getCurrentTime(), value: width})
         }
     },
     componentDidUpdate(prevProps, prevState) {
         if (this.state.mouseHover) {
             const delta = 10
             const currentWidth = this.state.width
-            let currentDirection = Math.sign(currentWidth - prevState.width) || 1;
+            let currentDirection = Math.sign(currentWidth - prevState.width) || 1
             const expectedNewWidth = currentWidth + delta * currentDirection
             if (expectedNewWidth > maxWidth || expectedNewWidth < minWidth) {
-                currentDirection = currentDirection * -1;
+                currentDirection = currentDirection * -1
             }
             const newWidth = currentWidth + delta * currentDirection
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import '../node_modules/react-custom-scroll/dist/customScroll.css'
 import Footer from './comps/Footer';
 import WidgetsArea from './comps/WidgetsArea'
 import ReportArea from './comps/ReportArea'

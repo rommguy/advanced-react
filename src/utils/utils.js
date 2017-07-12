@@ -1,0 +1,8 @@
+const utils = {
+    getCurrentTime() {
+        const time = new Date();
+        return `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+    }
+}
+
+export default utils

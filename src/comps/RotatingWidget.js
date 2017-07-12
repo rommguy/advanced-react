@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import createReactClass from 'create-react-class'
+import utils from '../utils/utils'
 
-
+const {getCurrentTime} = utils
 
 const RotatingWidget = createReactClass({
     displayName: 'RotatingWidget',
@@ -18,11 +19,11 @@ const RotatingWidget = createReactClass({
         return this.state.angle
     },
     handleMouseEnter() {
-        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseEnter', time: Date.now(), value: this.getCurrentValue()})
+        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseEnter', time: getCurrentTime(), value: this.getCurrentValue()})
         this.setState({mouseHover: true})
     },
     handleMouseLeave() {
-        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseLeave', time: Date.now(), value: this.getCurrentValue()})
+        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseLeave', time: getCurrentTime(), value: this.getCurrentValue()})
         this.setState({mouseHover: false})
     },
     isHovering() {
@@ -31,7 +32,7 @@ const RotatingWidget = createReactClass({
     updateAngle(angle, source) {
         this.setState({angle: angle % 360})
         if (source) {
-            this.props.reportAction({widget: this.constructor.displayName, source, time: Date.now(), value: angle})
+            this.props.reportAction({widget: this.constructor.displayName, source, time: getCurrentTime(), value: angle})
         }
     },
     componentDidUpdate() {

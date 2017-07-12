@@ -1,4 +1,9 @@
 .report-area {
+
   width: calc(50vw - 2px);
   display: inline-block;
+
+  .actions-container {
+    max-height: 300px;
+  }
 }
