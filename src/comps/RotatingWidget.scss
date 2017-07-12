@@ -2,20 +2,24 @@
 
 $wingHeight: 70px;
 $wingWidth: 15px;
-$widgetCenter: calc(#{$widget-size} / 2);
+$widgetCenter: calc(#{$widgetSize} / 2);
 
 .rotating-widget {
     width: 100%;
+    height: $widgetSize;
     border: 1px solid black;
+    display: flex;
 
     .controls {
         display: inline-block;
+        line-height: $widgetSize;
+        margin: 0 10px;
+        font-size: 12px;
     }
 
     .visual {
         display: inline-block;
-        height: $widget-size;
-        width: $widget-size;
+        width: $widgetSize;
         position: relative;
 
         .wing {

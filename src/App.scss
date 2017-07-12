@@ -2,8 +2,24 @@
 @import "comps/ContactUs.scss";
 @import "comps/RotatingWidget.scss";
 
+button, input {
+  font-size: inherit;
+  border-radius: 0;
+  margin: 0 5px;
+}
+
+
+
 .App {
   text-align: center;
+
+  .widgets-area, .report-area  {
+    width: calc(50vw - 2px);
+    display: inline-block;
+;  }
+
+  .report-area {
+  }
 }
 
 .App-logo {

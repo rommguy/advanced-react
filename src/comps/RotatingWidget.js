@@ -37,7 +37,8 @@ const RotatingWidget = createReactClass({
                            min="0"
                            max="360"
                            value={this.state.angle}
-                           onChange={(e) => this.updateAngle(parseInt(e.target.value))}/>
+                           onChange={(e) => this.updateAngle(parseInt(e.target.value, 10))}/>
+                    <button onClick={() => this.setState({angle: 0})}>Reset</button>
                 </div>
                 <div className="visual"
                      onMouseEnter={this.handleMouseEnter}
