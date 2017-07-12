@@ -1,6 +1,8 @@
 @import "comps/Footer.scss";
 @import "comps/ContactUs.scss";
 @import "comps/RotatingWidget.scss";
+@import "comps/ReportArea.scss";
+@import "comps/WidgetsArea.scss";
 
 button, input {
   font-size: inherit;
@@ -12,14 +14,6 @@ button, input {
 
 .App {
   text-align: center;
-
-  .widgets-area, .report-area  {
-    width: calc(50vw - 2px);
-    display: inline-block;
-;  }
-
-  .report-area {
-  }
 }
 
 .App-logo {
