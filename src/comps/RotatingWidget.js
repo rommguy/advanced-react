@@ -1,24 +1,38 @@
-import React from 'react';
-import createReactClass from 'create-react-class';
+import React from 'react'
+import PropTypes from 'prop-types'
+import createReactClass from 'create-react-class'
+
 
 
 const RotatingWidget = createReactClass({
+    displayName: 'RotatingWidget',
+    propTypes: {
+        reportAction: PropTypes.func.isRequired
+    },
     getInitialState() {
         return {
             angle: 0
-        };
+        }
+    },
+    getCurrentValue() {
+        return this.state.angle
     },
     handleMouseEnter() {
+        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseEnter', time: Date.now(), value: this.getCurrentValue()})
         this.setState({mouseHover: true})
     },
     handleMouseLeave() {
+        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseLeave', time: Date.now(), value: this.getCurrentValue()})
         this.setState({mouseHover: false})
     },
     isHovering() {
         return this.state.mouseHover
     },
-    updateAngle(angle) {
+    updateAngle(angle, source) {
         this.setState({angle: angle % 360})
+        if (source) {
+            this.props.reportAction({widget: this.constructor.displayName, source, time: Date.now(), value: angle})
+        }
     },
     componentDidUpdate() {
         if (this.state.mouseHover) {
@@ -37,8 +51,8 @@ const RotatingWidget = createReactClass({
                            min="0"
                            max="360"
                            value={this.state.angle}
-                           onChange={(e) => this.updateAngle(parseInt(e.target.value, 10))}/>
-                    <button onClick={() => this.setState({angle: 0})}>Reset</button>
+                           onChange={(e) => this.updateAngle(parseInt(e.target.value, 10), 'input')}/>
+                    <button onClick={() => this.updateAngle(0, 'reset')}>Reset</button>
                 </div>
                 <div className="visual"
                      onMouseEnter={this.handleMouseEnter}
@@ -49,8 +63,8 @@ const RotatingWidget = createReactClass({
                     <div className="third wing"/>
                 </div>
             </div>
-        );
+        )
     }
 })
 
-export default RotatingWidget;
+export default RotatingWidget

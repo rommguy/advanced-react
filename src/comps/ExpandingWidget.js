@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 
 const minWidth = 10;
@@ -6,22 +7,34 @@ const maxWidth = 200
 const defaultWidth = (maxWidth - minWidth) / 2;
 
 const ExpandingWidget = createReactClass({
+    displayName: 'ExpandingWidget',
+    propTypes: {
+        reportAction: PropTypes.func.isRequired
+    },
     getInitialState() {
         return {
             width: defaultWidth
         }
     },
+    getCurrentValue() {
+        return this.state.width;
+    },
     handleMouseEnter() {
+        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseEnter', time: Date.now(), value: this.getCurrentValue()})
         this.setState({mouseHover: true})
     },
     handleMouseLeave() {
+        this.props.reportAction({widget: this.constructor.displayName, source: 'mouseLeave', time: Date.now(), value: this.getCurrentValue()})
         this.setState({mouseHover: false})
     },
     isHovering() {
         return this.state.mouseHover
     },
-    updateWidth(width) {
+    updateWidth(width, source) {
         this.setState({width})
+        if (source) {
+            this.props.reportAction({widget: this.constructor.displayName, source, time: Date.now(), value: width})
+        }
     },
     componentDidUpdate(prevProps, prevState) {
         if (this.state.mouseHover) {
@@ -48,13 +61,13 @@ const ExpandingWidget = createReactClass({
                            min={minWidth}
                            max={maxWidth}
                            value={this.state.width}
-                           onChange={(e) => this.updateWidth(parseInt(e.target.value, 10))}/>
+                           onChange={(e) => this.updateWidth(parseInt(e.target.value, 10), 'input')}/>
                     <datalist id="tickmarks">
                         <option value={minWidth} label="0%"/>
                         <option value={defaultWidth} label="50%"/>
                         <option value={maxWidth} label="100%"/>
                     </datalist>
-                    <button onClick={() => this.setState({width: defaultWidth})}>Reset</button>
+                    <button onClick={() => this.updateWidth(defaultWidth, 'reset')}>Reset</button>
                 </div>
                 <div className="visual"
                      onMouseEnter={this.handleMouseEnter}

@@ -11,6 +11,10 @@ class App extends Component {
         this.state = {userActions: []};
     }
 
+    reportAction = action => {
+        this.setState({userActions: this.state.userActions.concat(action)});
+    }
+
     render() {
         return (
             <div className="App">
@@ -19,7 +23,7 @@ class App extends Component {
                     <h2>Welcome to React</h2>
                 </div>
                 <div>
-                    <WidgetsArea userActions={this.state.userActions}/>
+                    <WidgetsArea reportAction={this.reportAction}/>
                     <ReportArea userActions={this.state.userActions}/>
                 </div>
                 <Footer/>
