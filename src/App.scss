@@ -16,6 +16,10 @@ button, input {
 
 .App {
   text-align: center;
+
+  .main-sections {
+    display: flex;
+  }
 }
 
 .App-logo {

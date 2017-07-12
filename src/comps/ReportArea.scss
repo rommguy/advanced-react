@@ -1,9 +1,18 @@
 .report-area {
-
   width: calc(50vw - 2px);
   display: inline-block;
+  padding: 10px 0;
 
   .actions-container {
-    max-height: 300px;
+    padding: 0 10px;
+    max-height: 442px;
+
+    .action-report {
+      margin-bottom: 10px;
+    }
+
+    .action-report:last-child {
+      margin: 0;
+    }
   }
 }
