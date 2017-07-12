@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Footer from './comps/Footer';
-import RotatingWidget from './comps/RotatingWidget';
 import WidgetsArea from './comps/WidgetsArea'
+import ReportArea from './comps/ReportArea'
 
 class App extends Component {
     constructor() {
@@ -19,8 +19,8 @@ class App extends Component {
                     <h2>Welcome to React</h2>
                 </div>
                 <div>
-                    <WidgetsArea/>
-                    <div className="report-area"></div>
+                    <WidgetsArea userActions={this.state.userActions}/>
+                    <ReportArea userActions={this.state.userActions}/>
                 </div>
                 <Footer/>
             </div>

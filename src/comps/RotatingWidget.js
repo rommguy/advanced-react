@@ -18,13 +18,13 @@ const RotatingWidget = createReactClass({
         return this.state.mouseHover
     },
     updateAngle(angle) {
-        this.setState({angle})
+        this.setState({angle: angle % 360})
     },
-    componentDidUpdate(prevState) {
+    componentDidUpdate() {
         if (this.state.mouseHover) {
             let currentAngle = this.state.angle
             setTimeout(() => {
-                this.updateAngle((currentAngle + 5) % 360)
+                this.updateAngle(currentAngle + 5)
             }, 50)
         }
     },

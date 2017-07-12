@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const ReportArea = () => (
@@ -7,5 +8,8 @@ const ReportArea = () => (
     </div>
 )
 
+ReportArea.PropTypes = {
+    userActions: PropTypes.array.isRequired
+}
 
 export default ReportArea;
