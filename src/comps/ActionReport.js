@@ -11,12 +11,11 @@ const ActionReport = createReactClass({
             source: PropTypes.string,
             time: PropTypes.string,
             value: PropTypes.number
-        }).isRequired
+        }).isRequired,
+        isLast: PropTypes.bool
     },
     getInitialState() {
-        return {
-            showTooltip: false
-        }
+        return {}
     },
     handleMouseEnter() {
         this.setState({mouseHover: true})
@@ -41,7 +40,8 @@ const ActionReport = createReactClass({
         const tooltipBoundingRect = this.refs.tooltip.getBoundingClientRect()
 
         if (this.refs.tooltip) {
-            this.refs.tooltip.style.top = `${actionBoundingRect.height}px`
+            const tooltipTop = this.props.isLast ? -1 * actionBoundingRect.height : actionBoundingRect.height
+            this.refs.tooltip.style.top = `${tooltipTop}px`
             this.refs.tooltip.style.left = `${(actionBoundingRect.width / 2) - (tooltipBoundingRect.width / 2)}px`
         }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import ContactUs from './ContactUs';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -8,6 +9,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 const Footer = createReactClass({
     getInitialState() {
         return {};
+    },
+    propTypes: {
+        clearUserActions: PropTypes.func
     },
     handleMouseEnter() {
         this.setState({mouseHover: true})
@@ -31,6 +35,12 @@ const Footer = createReactClass({
                     transitionEnterTimeout={450}
                     transitionLeaveTimeout={450}>
                     {this.state.mouseHover ? (<div className="contact-container"><ContactUs key="ContactUs"/></div>) : null}
+                </ReactCSSTransitionGroup>
+                <ReactCSSTransitionGroup
+                    transitionName="example"
+                    transitionEnterTimeout={450}
+                    transitionLeaveTimeout={450}>
+                    {this.state.mouseHover ? (<div className="clear-button"><button onClick={this.props.clearUserActions}>Clear Log</button></div>) : null}
                 </ReactCSSTransitionGroup>
             </div>
         );

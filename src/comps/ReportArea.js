@@ -7,7 +7,12 @@ const ReportArea = (props) => (
     <div className="report-area">
         <CustomScroll>
             <div className="actions-container">
-                {props.userActions.map((action, index) => (<ActionReport action={action} key={index}/>))}
+                {props.userActions.map((action, index) => (
+                    <ActionReport
+                        action={action}
+                        key={index}
+                        isLast={index === props.userActions.length - 1}
+                    />))}
             </div>
         </CustomScroll>
     </div>
